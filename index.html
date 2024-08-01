@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Double Pendulum Simulation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        canvas {
+            border: 1px solid black;
+            display: block;
+            margin: auto;
+        }
+        #controls {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .slider-container {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        .slider-label {
+            display: inline-block;
+            width: 120px;
+            color: white;
+        }
+        .slider-value {
+            margin-left: 10px;
+            color: white;
+            width: 60px;
+        }
+        .button-container {
+            margin: 10px 0;
+        }
+        button {
+            color: white;
+            background-color: #333;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="900" height="900"></canvas>
+    <div id="controls">
+        <div class="slider-container">
+            <label class="slider-label" for="drawMassCheckbox">
+                <input type="checkbox" id="drawMassCheckbox">
+                Draw Mass
+            </label>
+        </div>
+        <div class="slider-container">
+            <label class="slider-label" for="drawBarsCheckbox">
+                <input type="checkbox" id="drawBarsCheckbox" checked>
+                Draw Bars
+            </label>
+        </div>       
+        <div class="slider-container">
+            <label class="slider-label" for="length1Slider">Length 1:</label>
+            <input type="range" id="length1Slider" min="50" max="300" value="200">
+            <span id="length1Value" class="slider-value">200</span>
+        </div>
+        <div class="slider-container">
+            <label class="slider-label" for="length2Slider">Length 2:</label>
+            <input type="range" id="length2Slider" min="50" max="300" value="200">
+            <span id="length2Value" class="slider-value">200</span>
+        </div>
+        <div class="slider-container">
+            <label class="slider-label" for="mass1Slider">Mass 1:</label>
+            <input type="range" id="mass1Slider" min="5" max="50" value="10">
+            <span id="mass1Value" class="slider-value">10</span>
+        </div>
+        <div class="slider-container">
+            <label class="slider-label" for="mass2Slider">Mass 2:</label>
+            <input type="range" id="mass2Slider" min="5" max="50" value="10">
+            <span id="mass2Value" class="slider-value">10</span>
+        </div>
+        <div class="slider-container">
+            <label class="slider-label" for="numPendulumsSlider">Pendulums:</label>
+            <input type="range" id="numPendulumsSlider" min="1" max="256" value="256">
+            <span id="numPendulumsValue" class="slider-value">256</span>
+        </div>
+        <div class="slider-container">
+            <label class="slider-label" for="gSlider">Gravity (g):</label>
+            <input type="range" id="gSlider" min="0" max="20" step="0.1" value="9.81">
+            <span id="gValue" class="slider-value">9.81</span>
+        </div>
+        <div class="slider-container">
+            <label class="slider-label" for="airResistanceSlider">Air Resistance:</label>
+            <input type="range" id="airResistanceSlider" min="0" max="1" step="0.01" value="0">
+            <span id="airResistanceValue" class="slider-value">0</span>
+        </div>
+        <div class="slider-container">
+            <label class="slider-label" for="initialAngleSlider">Initial Angle:</label>
+            <input type="range" id="initialAngleSlider" min="0" max="180" step="0.1" value="90">
+            <span id="initialAngleValue" class="slider-value">90</span>
+        </div>
+        
+        <div class="slider-container">
+            <label class="slider-label" for="pathLengthSlider">Path Length:</label>
+            <input type="range" id="pathLengthSlider" min="1" max="1000" value="100">
+            <span id="pathLengthValue" class="slider-value">100</span>
+        </div>
+        <div class="button-container">
+            <button id="startButton">Start</button>
+            <button id="pauseButton">Pause</button>
+            <button id="resetButton">Reset</button>
+
+        </div>
+    </div>
+    <script src="doublePendulum.js"></script>
+</body>
+</html>
